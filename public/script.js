@@ -6,42 +6,42 @@ const loginForm = document.getElementById("loginForm");
 // const userCard = document.querySelectorAll(".users");
 
 form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+  event.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const file = document.getElementById("file").files[0];
+  console.log(file);
 
-   const response = await fetch("https://backend-2026-naomi-and-victor.onrender.com/users", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-           email,
-            password
-        }),
-    });
+  const formData = new FormData();
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("file", file);
 
-    const data = await response.json();
-    console.log(data);
-    form.reset();
-    getUsers();
- });
+  const response = await fetch("/users", {
+    method: "POST",
+    body: formData,
+  });
 
- async function getUsers() {
-    const response = await fetch("https://backend-2026-naomi-and-victor.onrender.com/users");
-    const users = await response.json();
-    usersContainer.innerHTML = "";
+  const data = await response.json();
+  console.log(data);
+  form.reset();
+  getUsers();
+});
 
-   users.forEach((user) => {
-    console.log(user)
-    const deleteButton = document.createElement ("button");
-    deleteButton.className = "delete-button"
+async function getUsers() {
+  const response = await fetch("/users");
+  const users = await response.json();
+  usersContainer.innerHTML = "";
+
+  users.forEach((user) => {
+    console.log(user);
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "delete-button";
     deleteButton.innerHTML = "Delete account";
 
-    
-       const div = document.createElement("div");
-       div.className = "user";
-       div.innerHTML = `
+    const div = document.createElement("div");
+    div.className = "user";
+    div.innerHTML = `
        <a href="user.html">
       <h3>${user.email}</h3>
       <p>${user.role}</p>
@@ -49,58 +49,58 @@ form.addEventListener("submit", async (event) => {
       </a>
       `;
 
-      
-        usersContainer.appendChild(div);
-         div.appendChild(deleteButton);
+    usersContainer.appendChild(div);
+    div.appendChild(deleteButton);
 
-         div.addEventListener("click", () => {
-            document.location.href = "user.html";
-         })
-        deleteButton.addEventListener("click", deleteUser)
-        
-        
+    div.addEventListener("click", () => {
+      document.location.href = "user.html";
     });
+    deleteButton.addEventListener("click", deleteUser);
+  });
 }
 
 // log in user
 loginForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+  event.preventDefault();
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
 
-    const response = await fetch("https://backend-2026-naomi-and-victor.onrender.com/users/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            email,
-            password
-        }),
-    });
+  const response = await fetch(
+    "https://backend-2026-naomi-and-victor.onrender.com/users/login",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    },
+  );
 
-   const data = await response.json();
-    console.log(data.userId);
-   localStorage.setItem ("userId",data.userId)
-   localStorage.setItem ("token",data.token);
-   
-   
- });
- 
- // delete user
-  
- async function deleteUser () {
+  const data = await response.json();
+  console.log(data.userId);
+  localStorage.setItem("userId", data.userId);
+  localStorage.setItem("token", data.token);
+});
+
+// delete user
+
+async function deleteUser() {
   const id = await localStorage.getItem("userId");
-  const token = await localStorage.getItem ("token");
-  await fetch(`https://backend-2026-naomi-and-victor.onrender.com/users/${id}`, 
-     {
-        method: "DELETE",
-        headers: {
-             "Content-Type": "application/json",
-              "Authorization": `bearer ${token}`
-      },    
-     });
-     getUsers();
- };
-  
- getUsers();
+  const token = await localStorage.getItem("token");
+  await fetch(
+    `https://backend-2026-naomi-and-victor.onrender.com/users/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${token}`,
+      },
+    },
+  );
+  getUsers();
+}
+
+getUsers();
