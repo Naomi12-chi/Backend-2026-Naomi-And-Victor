@@ -13,7 +13,7 @@ server.use(express.static(path.join(__dirname, "public")));
 const port = 3900;
 
 mongoose
-  .connect("mongodb://localhost:27017/myDatabase")
+  .connect(process.env.MONGODB_URI)
 
   .then(() => {
     console.log("Database Connected");
