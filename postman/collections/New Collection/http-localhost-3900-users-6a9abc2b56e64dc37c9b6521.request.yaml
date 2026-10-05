@@ -1,0 +1,11 @@
+$kind: http-request
+name: http://localhost:3900/users/6a9abc2b56e64dc37c9b6521
+description: ""
+url: http://localhost:3900/users/6a9abc2b56e64dc37c9b6521
+method: GET
+headers:
+  Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTlhYmMyYjU2ZTY0ZGMzN2M5YjY1MjEiLCJ1c2VyRW1haWwiOiJvbW9iYW5hb21pQGdtYWlsLmNvbSIsImlhdCI6MTc4ODg3OTk5MywiZXhwIjoxNzg4ODgxNzkzfQ.6Jq_Fgfdcmn_H9LVF-hu6iqDXkrAUZzm3r6YCmWMeMk
+body:
+  type: json
+  content: ""
+order: 1788979675158

@@ -1,0 +1,15 @@
+$kind: http-request
+name: http://localhost:6789/user
+description: ""
+url: http://localhost:6789/user
+method: GET
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"Omobadelight@gmail.com\",\r
+
+    \    \"password\": \"Naomi1234567\"\r
+
+    }"
+order: 4177481312377871

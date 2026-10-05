@@ -1,0 +1,15 @@
+$kind: http-request
+name: http://localhost:3900/users/login
+description: ""
+url: http://localhost:3900/users/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"password\": \"naomi123\",\r
+
+    \    \"email\": \"desiregratie@gmail.com\"\r
+
+    }"
+order: 4329172552228842
