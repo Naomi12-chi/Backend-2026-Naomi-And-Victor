@@ -10,7 +10,7 @@ form.addEventListener("submit", async (event) => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-   const response = await fetch("/users", {
+   const response = await fetch("https://backend-2026-naomi-and-victor.onrender.com/users", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -28,7 +28,7 @@ form.addEventListener("submit", async (event) => {
  });
 
  async function getUsers() {
-    const response = await fetch("/users");
+    const response = await fetch("https://backend-2026-naomi-and-victor.onrender.com/users");
     const users = await response.json();
     usersContainer.innerHTML = "";
 
@@ -68,7 +68,7 @@ loginForm.addEventListener("submit", async (event) => {
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
 
-    const response = await fetch("/users/login", {
+    const response = await fetch("https://backend-2026-naomi-and-victor.onrender.com/users/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -92,7 +92,7 @@ loginForm.addEventListener("submit", async (event) => {
  async function deleteUser () {
   const id = await localStorage.getItem("userId");
   const token = await localStorage.getItem ("token");
-  await fetch(`/users/${id}`, 
+  await fetch(`https://backend-2026-naomi-and-victor.onrender.com/users/${id}`, 
      {
         method: "DELETE",
         headers: {
