@@ -66,7 +66,7 @@ loginForm.addEventListener("submit", async (event) => {
   const password = document.getElementById("loginPassword").value;
 
   const response = await fetch(
-    "https://backend-2026-naomi-and-victor.onrender.com/users/login",
+    "/users/login",
     {
       method: "POST",
       headers: {
@@ -91,7 +91,7 @@ async function deleteUser() {
   const id = await localStorage.getItem("userId");
   const token = await localStorage.getItem("token");
   await fetch(
-    `https://backend-2026-naomi-and-victor.onrender.com/users/${id}`,
+    `/users/${id}`,
     {
       method: "DELETE",
       headers: {
