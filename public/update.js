@@ -9,8 +9,8 @@ updateForm.addEventListener ("submit", async (event) => {
      console.log (id);
    const email = document.getElementById("updateEmail").value;
 
-     await fetch(`/users/${id}`, {
-       method: "PATCH",
+     await fetch(`/users/user/${id}`, {
+       method: "PUT",
         headers: {
            "Content-Type": "application/json",
            "Authorization": `bearer ${token}`

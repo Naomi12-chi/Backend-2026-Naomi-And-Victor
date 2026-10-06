@@ -18,6 +18,6 @@ router.get("/user/:id", getUser);
 router.get("/", getUsers);
 router.get ("/profile-picture/:id", getProfilePicture)
 router.put("/user/:id", updateUser);
-router.delete("/user/:id", deleteUser);
+router.delete("/:id", deleteUser);
 
 module.exports = router;

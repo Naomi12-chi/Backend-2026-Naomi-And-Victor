@@ -35,9 +35,9 @@ async function getUsers() {
 
   users.forEach((user) => {
     console.log(user);
-    const deleteButton = document.createElement("button");
-    deleteButton.className = "delete-button";
-    deleteButton.innerHTML = "Delete account";
+    // const deleteButton = document.createElement("button");
+    // deleteButton.className = "delete-button";
+    // deleteButton.innerHTML = "Delete account";
 
     const div = document.createElement("div");
     div.className = "user";
@@ -50,12 +50,12 @@ async function getUsers() {
       `;
 
     usersContainer.appendChild(div);
-    div.appendChild(deleteButton);
+    // div.appendChild(deleteButton);
 
     div.addEventListener("click", () => {
       document.location.href = "user.html";
     });
-    deleteButton.addEventListener("click", deleteUser);
+    // deleteButton.addEventListener("click", deleteUser);
   });
 }
 

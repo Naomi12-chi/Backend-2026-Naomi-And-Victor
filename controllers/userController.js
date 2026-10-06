@@ -73,8 +73,10 @@ const createUser = async (req, res) => {
 
 //login
 const loginUser = async (req, res) => {
+  console.log("ran")
   try {
     const { email, password } = req.body;
+    console.log(req.body)
 
     const user = await User.findOne({ email });
 
@@ -101,19 +103,19 @@ const loginUser = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id)
     // if (id !== req.user.userId || req.user.role === "admin")
     //   res.status(403).json("forbidden access");
     const user = await User.findById(id).select("-password");
     res.status(200).json({
-      message: "User found",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        profilePicture: user.profilePicture
-        ? `users/profile-picture/${user.profilePicture}`
-        : null,
-      },
+      message: "User found", email: user.email, role: user.role
+      //   _id: user._id,
+      //   name: user.name,
+      //   email: user.email,
+      //   profilePicture: user.profilePicture
+      //   ? `users/profile-picture/${user.profilePicture}`
+      //   : null,
+      // },
     });
   } catch (err) {
     console.error(err.message);
@@ -137,8 +139,8 @@ const updateUser = async (req, res) => {
   try {
     const { userName, email, password, role } = req.body;
 
-    if (req.params.id !== req.user.userId || req.user.role === "admin")
-      return res.status(403).json("must be an admin");
+    // if (req.params.id !== req.user.userId || req.user.role === "admin")
+    //   return res.status(403).json("must be an admin");
 
     const updatedUser = await User.findByIdAndUpdate(req.params.id, {
       userName,
@@ -163,8 +165,8 @@ const deleteUser = async (req, res) => {
     // const token = jwt.sign({ userId: user._id, userEmail: user.email, role: user.role }, KEY, {
     //     expiresIn: "5m",
     // });
-    if (req.params.id !== req.user.userId || req.user.role === "admin")
-      return res.status(403).json("must be an admin");
+    // if (req.params.id !== req.user.userId || req.user.role === "admin")
+    //   return res.status(403).json("must be an admin");
     res.status(200).json("User deleted");
   } catch (err) {
     console.error(err.message);
